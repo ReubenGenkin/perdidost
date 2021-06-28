@@ -30,8 +30,9 @@ app.get('/api/notes', (req, res) => {
     res.json(data);
 });
 
-app.post('/api/notes' (req, res) => {
+app.post('/api/notes', (req, res) => {
 
+    
 })
 
 
