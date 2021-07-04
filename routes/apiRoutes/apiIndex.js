@@ -1,6 +1,6 @@
 
 const router = require('express').Router();
-const apiIndex = require('./apiIndex');
+const apiIndex = require('./apiRoutes');
 
 router.use(apiIndex);
 

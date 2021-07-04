@@ -39,7 +39,7 @@ router.post('/api/notes', (req, res) => {
 // add new note to the DB
     noteInput.push(newNote);
 
-    fs.writeFileSync("./db/db.json",
+    fs.writeFileSync('./db/db.json',
         JSON.stringify(entry), function (err) {
             if (err) throw err;
         })
