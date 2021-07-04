@@ -1,9 +1,15 @@
 const fs = require('fs');
 const router = require('express').Router();
 const { v4: uuidv4 } = require('uuid');
-const input = require('../db/db.json');
+let noteInput = require('../../db/db.json');
 
-router.get()
+//route to get all notes
+router.get('/notes', (req, res) => {
+
+    let newEntry = JSON.parse(fs.readFileSync('./db/db.json'));
+    noteInput = newEntry;
+    res.json(noteInput);
+});
 
 router.post('/api/notes', (req, res) => {
     let newInput =
