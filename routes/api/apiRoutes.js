@@ -47,3 +47,25 @@ router.post('/api/notes', (req, res) => {
 //response
     res.json(noteInput);
 })
+
+router.delete('/notes/:id', (req, res) => {
+
+// get note to delete by ID
+    const delNote = req.params.id;
+
+    let entry = JSON.parse(fs.readFileSync('./db/db.json'));
+
+// filter out deleted note
+    newbase = entry.filter(filterNote => {
+        return filterNote.id != delNote;
+    });
+
+    fs.writeFileSync('./db/db.json', JSON.stringify(newArray));
+
+    //sending back new data base after updating it
+    res.json(newArray);
+
+});
+
+//export
+module.exports = router;
