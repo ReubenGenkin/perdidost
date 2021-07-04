@@ -7,23 +7,43 @@ let noteInput = require('../../db/db.json');
 router.get('/notes', (req, res) => {
 
     let newEntry = JSON.parse(fs.readFileSync('./db/db.json'));
+
     noteInput = newEntry;
     res.json(noteInput);
 });
 
+//get note by ID
+router.get('/notes/:id', (req, res) => {
+
+//Find note by id
+    const savedNote = findById(req.params.id, noteSpot);
+
+// if else to test specific note and errer if none found
+    if (savedNote) {
+
+        res.json(savedNote);
+    } else {
+        res.send(404);
+    }
+});
+
+// post request to add new notes
 router.post('/api/notes', (req, res) => {
-    let newInput =
+    let newNote =
     {
         id: uuidv4(),
         title: req.body.title,
         text: req.body.text
     };
 
-    input.push(newInput);
+// add new note to the DB
+    noteInput.push(newNote);
 
     fs.writeFileSync("./db/db.json",
         JSON.stringify(entry), function (err) {
             if (err) throw err;
         })
-    res.json(entry);
+
+//response
+    res.json(noteInput);
 })
