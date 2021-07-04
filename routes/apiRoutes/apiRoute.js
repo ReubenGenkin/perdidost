@@ -60,10 +60,10 @@ router.delete('/notes/:id', (req, res) => {
         return filterNote.id != delNote;
     });
 
-    fs.writeFileSync('./db/db.json', JSON.stringify(newArray));
+    fs.writeFileSync('./db/db.json', JSON.stringify(newbase));
 
     //sending back new data base after updating it
-    res.json(newArray);
+    res.json(newbase);
 
 });
 
