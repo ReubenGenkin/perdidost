@@ -28,7 +28,7 @@ router.get('/notes/:id', (req, res) => {
 });
 
 // post request to add new notes
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     let newNote =
     {
         id: uuidv4(),
@@ -39,8 +39,8 @@ router.post('/api/notes', (req, res) => {
 // add new note to the DB
     noteInput.push(newNote);
 
-    fs.writeFileSync("./db/db.json",
-        JSON.stringify(entry), function (err) {
+    fs.writeFileSync('./db/db.json',
+        JSON.stringify(noteInput), function (err) {
             if (err) throw err;
         })
 
@@ -60,10 +60,10 @@ router.delete('/notes/:id', (req, res) => {
         return filterNote.id != delNote;
     });
 
-    fs.writeFileSync('./db/db.json', JSON.stringify(newArray));
+    fs.writeFileSync('./db/db.json', JSON.stringify(newbase));
 
     //sending back new data base after updating it
-    res.json(newArray);
+    res.json(newbase);
 
 });
 
