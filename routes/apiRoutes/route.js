@@ -28,7 +28,7 @@ router.get('/notes/:id', (req, res) => {
 });
 
 // post request to add new notes
-router.post('/api/notes', (req, res) => {
+router.post('/notes', (req, res) => {
     let newNote =
     {
         id: uuidv4(),
@@ -40,7 +40,7 @@ router.post('/api/notes', (req, res) => {
     noteInput.push(newNote);
 
     fs.writeFileSync('./db/db.json',
-        JSON.stringify(entry), function (err) {
+        JSON.stringify(noteInput), function (err) {
             if (err) throw err;
         })
 
